@@ -4,10 +4,24 @@ on:
   push:
     branches:
       - main
+env:
+  SSH_PROD_SERVER_PORT: ${{secrets.SSH_PROD_SERVER_PORT}}
+  PROD_SERVER_IP: ${{secrets.PROD_SERVER_IP}}
 jobs:
   build:
     runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
+      - uses: actions/checkout@v2
+      - name: Check the env
+        run: echo $SSH_PROD_SERVER_PORTSSH_PROD_SERVER_PORT $PROD_SERVER_IP
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: Load bash config
         run: source ~/.bash_profile
       - name: Copy envs
@@ -15,5 +29,5 @@ jobs:
       - name: Install project dependencies
         run: npm install
       - name: Build the static file from React, deploy to production VPS
-        run: bash deploy_blog.sh
+        run: ./deploy_blog.sh
 
