@@ -16,14 +16,10 @@ jobs:
         node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Check the env
-        run: echo $SSH_PROD_SERVER_PORTSSH_PROD_SERVER_PORT $PROD_SERVER_IP
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Load bash config
-        run: source ~/.bash_profile
       - name: Copy envs
         run: eval "echo \"$(cat .env)\"" > .env
       - name: Install project dependencies
