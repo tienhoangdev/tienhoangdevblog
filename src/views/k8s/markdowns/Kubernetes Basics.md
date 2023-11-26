@@ -73,7 +73,7 @@ kubectl version
 
 Basic commands:
 
-![Untitled](Kubernetes%20Basics%20f47e56bd0be840e3a271ec75d5e8a0b5/Untitled.png)
+![Untitled](Kubernetes%20Basics/Untitled.png)
 
 Examples:
 
