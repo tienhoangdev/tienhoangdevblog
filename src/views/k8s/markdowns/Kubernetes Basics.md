@@ -1,19 +1,5 @@
 # Kubernetes Basics
 
-## Overview
-
-- Containerize Application
-- Chạy các service với dependencies trong container riêng của nó
-- Container vs Virtual Machines
-
-## Container orchestration
-
-- Quản lý các containers, cho phép khả năng scale up/ scale down tuỳ thuộc vào lượng traffic.
-- Giúp ứng dụng có tính sẵn sàng cao ( High availability)
-- Các công nghệ tương tự:
-    - Docker swarm
-    - Mesos
-
 ## Basic concepts
 
 - Nodes
@@ -186,6 +172,17 @@ data:
   mongo-root-password: cGFzc3dvcmQ= #password
 ```
 
+Config map template file:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongodb-configmap
+data:
+  database_url: mongodb-service
+```
+
 Mongodb deployment template:
 
 ```yaml
@@ -213,7 +210,7 @@ spec:
           env:
           - name: MONGO_INITDB_ROOT_USERNAME 
             valueFrom: 
-              secretKeyRef: 
+              secretKeyRef: # Reference from Secrets 
                 name: mongodb-secret
                 key: mongo-root-username
           - name: MONGO_INITDB_ROOT_PASSWORD
@@ -221,6 +218,7 @@ spec:
               secretKeyRef: 
                 name: mongodb-secret
                 key: mongo-root-password
+# "---" Can be used to create multiple documents in one yaml file
 ---
 apiVersion: v1
 kind: Service
@@ -235,6 +233,80 @@ spec:
       targetPort: 27017
 ```
 
+Mongo express deployment template:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mongo-express
+  labels: 
+    app: mongo-express
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: mongo-express
+  template:
+    metadata:
+      labels:
+        app: mongo-express
+    spec:
+      containers:
+      - name: mongo-express
+        image: mongo-express
+        ports:
+        - containerPort: 8081
+        env:
+        - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+          valueFrom:
+            secretKeyRef: # Reference from Secrets
+              name: mongodb-secret
+              key: mongo-root-username
+        - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+          valueFrom:
+            secretKeyRef: 
+              name: mongodb-secret
+              key: mongo-root-password
+        - name: ME_CONFIG_MONGODB_SERVER
+          valueFrom:
+            configMapKeyRef: # Reference from Configmap
+              name: mongodb-configmap
+              key: database_url
+
+# "---" Can be used to create multiple documents in one yaml file
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: mongo-express-service
+spec:
+  selector:
+    app: mongo-express
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30000
+```
+
+Apply lần lượt các template trên: `Secrets` → `Configmap` → `Deployment & Services`
+
+```yaml
+kubectl apply -f [yaml file]
+```
+
+Hiển thị status của pod realtime
+
 ```yaml
 kubectl get pod --watch
 ```
+
+Assign external IP address to services
+
+```yaml
+minikube service [service name]
+```
+
+![Untitled](Kubernetes%20Basics/Untitled%201.png)
