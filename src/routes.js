@@ -52,6 +52,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 // Golang
 const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
+// Cloud
+// Kubernetes
+const KubernetesBasics = React.lazy(() => import('./views/k8s/basics'))
 // AWS
 const SAMCheatSheet = React.lazy(() => import('./views/aws/dva/sam/sam'))
 // Git
@@ -126,6 +129,11 @@ const routes = [
     path: '/aws/dva/sam-cheatsheet',
     name: 'AWS SAM Cheatsheet',
     element: SAMCheatSheet,
+  },
+  {
+    path: '/k8s/basics',
+    name: 'Kubernetes Basics',
+    element: KubernetesBasics,
   },
 ]
 

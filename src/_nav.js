@@ -40,7 +40,7 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'AWS',
+    name: 'Cloud',
   },
   {
     component: CNavGroup,
@@ -57,6 +57,24 @@ const _nav = [
         component: CNavItem,
         name: 'AWS SAM Cheatsheet',
         to: '/aws/dva/sam-cheatsheet',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Kubernetes',
+    to: '/k8s',
+    icon: (
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1055px-Kubernetes_logo_without_workmark.svg.png"
+        style={{ width: '2rem', marginRight: '1rem' }}
+      />
+    ),
+    items: [
+      {
+        component: CNavItem,
+        name: 'Kubernetes basics',
+        to: '/k8s/basics',
       },
     ],
   },
