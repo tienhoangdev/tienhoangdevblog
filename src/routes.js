@@ -53,6 +53,8 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 // Golang
 const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
 // Cloud
+//Linux
+const LinuxUsefulCommands = React.lazy(() => import('./views/linux/usefulCommands'))
 // Kubernetes
 const KubernetesBasics = React.lazy(() => import('./views/k8s/basics'))
 // AWS
@@ -134,6 +136,11 @@ const routes = [
     path: '/k8s/basics',
     name: 'Kubernetes Basics',
     element: KubernetesBasics,
+  },
+  {
+    path: '/linux/useful-commands',
+    name: 'Linux useful commands',
+    element: LinuxUsefulCommands,
   },
 ]
 

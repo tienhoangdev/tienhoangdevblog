@@ -62,6 +62,24 @@ const _nav = [
   },
   {
     component: CNavGroup,
+    name: 'Linux',
+    to: '/linux',
+    icon: (
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png"
+        style={{ width: '2rem', marginRight: '1rem' }}
+      />
+    ),
+    items: [
+      {
+        component: CNavItem,
+        name: 'Linux useful commands',
+        to: '/linux/useful-commands',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
     name: 'Kubernetes',
     to: '/k8s',
     icon: (
