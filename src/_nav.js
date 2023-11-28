@@ -76,6 +76,11 @@ const _nav = [
         name: 'Linux useful commands',
         to: '/linux/useful-commands',
       },
+      {
+        component: CNavItem,
+        name: 'Linux tricks',
+        to: '/linux/tricks',
+      },
     ],
   },
   {

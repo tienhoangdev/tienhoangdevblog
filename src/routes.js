@@ -55,6 +55,7 @@ const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
 // Cloud
 //Linux
 const LinuxUsefulCommands = React.lazy(() => import('./views/linux/usefulCommands'))
+const LinuxTricks = React.lazy(() => import('./views/linux/tricks'))
 // Kubernetes
 const KubernetesBasics = React.lazy(() => import('./views/k8s/basics'))
 // AWS
@@ -141,6 +142,11 @@ const routes = [
     path: '/linux/useful-commands',
     name: 'Linux useful commands',
     element: LinuxUsefulCommands,
+  },
+  {
+    path: '/linux/tricks',
+    name: 'Linux tricks',
+    element: LinuxTricks,
   },
 ]
 
