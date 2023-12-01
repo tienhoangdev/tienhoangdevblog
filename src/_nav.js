@@ -172,6 +172,24 @@ const _nav = [
       },
     ],
   },
+  {
+    component: CNavGroup,
+    name: '????',
+    to: '/memes',
+    icon: (
+      <img
+        src="https://www.shutterstock.com/shutterstock/photos/2230690077/display_1500/stock-vector-doge-meme-dog-with-thug-life-glasses-vector-illustration-2230690077.jpg"
+        style={{ width: '2rem', marginRight: '1rem' }}
+      />
+    ),
+    items: [
+      {
+        component: CNavItem,
+        name: 'Age calculator',
+        to: '/memes/age-calculator',
+      },
+    ],
+  },
 ]
 
 export default _nav

@@ -71,6 +71,7 @@ const ubuntuPgInstallation = React.lazy(() => import('./views/postgresql/ubuntuP
 const ACID = React.lazy(() => import('./views/postgresql/acid'))
 // Tools
 const CARGCalculator = React.lazy(() => import('./views/tools/finance/cagr'))
+const AgeCalculator = React.lazy(() => import('./views/tools/memes/ageCalculator'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -161,6 +162,11 @@ const routes = [
     path: '/finance/cagr-calculator',
     name: 'Tính CAGR',
     element: CARGCalculator,
+  },
+  {
+    path: '/memes/age-calculator',
+    name: 'Age calculator',
+    element: AgeCalculator,
   },
 ]
 
