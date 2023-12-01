@@ -1,18 +1,4 @@
 import React from 'react'
-// import CIcon from '@coreui/icons-react'
-// import {
-//   cilBell,
-//   cilCalculator,
-//   cilChartPie,
-//   cilCursor,
-//   cilDescription,
-//   cilDrop,
-//   cilNotes,
-//   cilPencil,
-//   cilPuzzle,
-//   cilSpeedometer,
-//   cilStar,
-// } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
@@ -35,6 +21,24 @@ const _nav = [
         component: CNavItem,
         name: 'Giới thiệu về Golang',
         to: '/golang/golang-intro',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Javascript',
+    to: '/javascript',
+    icon: (
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
+        style={{ width: '2rem', marginRight: '1rem' }}
+      />
+    ),
+    items: [
+      {
+        component: CNavItem,
+        name: 'Javascript event loop',
+        to: '/javascript/javascript-eventloop',
       },
     ],
   },

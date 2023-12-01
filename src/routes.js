@@ -52,6 +52,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 // Golang
 const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
+
+// Javascript
+const JavascriptEventLoop = React.lazy(() => import('./views/javascript/jsEventloop'))
 // Cloud
 //Linux
 const LinuxUsefulCommands = React.lazy(() => import('./views/linux/usefulCommands'))
@@ -147,6 +150,11 @@ const routes = [
     path: '/linux/tricks',
     name: 'Linux tricks',
     element: LinuxTricks,
+  },
+  {
+    path: '/javascript/javascript-eventloop',
+    name: 'Javascript event loop',
+    element: JavascriptEventLoop,
   },
 ]
 
