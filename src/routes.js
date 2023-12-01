@@ -69,7 +69,8 @@ const GitRebaseWorkflow = React.lazy(() => import('./views/git/gitRebaseWorkflow
 // Postgresql
 const ubuntuPgInstallation = React.lazy(() => import('./views/postgresql/ubuntuPgInstallation'))
 const ACID = React.lazy(() => import('./views/postgresql/acid'))
-
+// Tools
+const CARGCalculator = React.lazy(() => import('./views/tools/finance/cagr'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -155,6 +156,11 @@ const routes = [
     path: '/javascript/javascript-eventloop',
     name: 'Javascript event loop',
     element: JavascriptEventLoop,
+  },
+  {
+    path: '/finance/cagr-calculator',
+    name: 'Tính CAGR',
+    element: CARGCalculator,
   },
 ]
 
