@@ -55,6 +55,7 @@ const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
 
 // Javascript
 const JavascriptEventLoop = React.lazy(() => import('./views/javascript/jsEventloop'))
+const NodeJsEventLoop = React.lazy(() => import('./views/javascript/nodeJsEventLoop'))
 // Cloud
 //Linux
 const LinuxUsefulCommands = React.lazy(() => import('./views/linux/usefulCommands'))
@@ -167,6 +168,11 @@ const routes = [
     path: '/memes/age-calculator',
     name: 'Age calculator',
     element: AgeCalculator,
+  },
+  {
+    path: '/javascript/nodejs-eventloop',
+    name: 'Node.js event loop',
+    element: NodeJsEventLoop,
   },
 ]
 

@@ -40,6 +40,11 @@ const _nav = [
         name: 'Javascript event loop',
         to: '/javascript/javascript-eventloop',
       },
+      {
+        component: CNavItem,
+        name: 'Nodejs event loop',
+        to: '/javascript/nodejs-eventloop',
+      },
     ],
   },
   {
