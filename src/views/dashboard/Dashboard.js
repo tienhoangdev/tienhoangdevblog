@@ -3,7 +3,7 @@ import './dashboardStyle.css'
 
 const Dashboard = () => {
   return (
-    <div className="d-flex align-items-center">
+    <div className="d-flex align-items-center container">
       <h1 id="catch-phrase" style={{ fontSize: '7rem', textOrientation: 'upright' }}>
         It&apos;s Gigachad time
       </h1>
