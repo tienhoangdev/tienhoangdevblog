@@ -21,3 +21,24 @@ Khởi động lại ssh deamon:
 ```bash
 sudo systemctl reload sshd
 ```
+
+### Connect to wifi via terminal
+
+1. Hiển thị các mạng wifi đang có
+
+```bash
+nmcli device wifi list
+```
+
+2. Connect bằng tên và password của wifi:
+
+```bash
+sudo nmcli device wifi connect "SSID" password "your_password"
+
+```
+
+3. Kiểm tra connection status:
+
+```bash
+nmcli connection show
+```

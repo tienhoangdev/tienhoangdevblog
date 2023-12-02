@@ -44,3 +44,13 @@ unzip
 ```bash
 unzip <archive> -d <directory>
 ```
+
+### Bench mark url hoặc api
+
+```bash
+ab -n 100 -c 10 http://example.com/
+```
+
+- n: Specifies the number of requests to perform during the test.
+- c: Specifies the number of multiple requests to perform at a time (concurrent connections).
+- http://example.com/: Replace this with the URL of the server you want to test.
