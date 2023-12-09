@@ -554,9 +554,3 @@ func FuzzReverse(f *testing.F) {
     })
 }
 ```
-
-```mermaid
-graph TD
-  Mermaid --> Diagram
-```
-
