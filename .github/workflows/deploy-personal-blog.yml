@@ -15,15 +15,19 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
       - name: Copy envs
         run: eval "echo \"$(cat .env)\"" > .env
       - name: Install project dependencies
-        run: npm install
+        run: npm ci
       - name: Build the static file from React, deploy to production VPS
         run: ./deploy_blog.sh
 
