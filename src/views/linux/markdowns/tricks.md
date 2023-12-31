@@ -44,4 +44,4 @@ nmcli connection show
 ```
 4. Force disconnect SSH
 
-Khi ssh session bịtimeout, thường dẫn tới việc terminal bịinactive, không thể thao tác được gì. Khi đó, thử bấm `~.`, terminal sẽ gửi tín hiệu ngắt kết nối.
+Khi ssh session bị timeout, thường dẫn tới việc terminal inactive, không thể thao tác được gì. Khi đó, thử bấm `~.`, terminal sẽ gửi tín hiệu ngắt kết nối.
