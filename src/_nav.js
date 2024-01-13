@@ -116,6 +116,19 @@ const _nav = [
   },
   {
     component: CNavGroup,
+    name: 'Programming Basics',
+    to: '/programming-basics',
+    icon: <img src="/programming-basics-logo.png" style={{ width: '2rem', marginRight: '1rem' }} />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Design pattern overview',
+        to: '/basics/design-pattens-overview',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
     name: 'Git',
     to: '/git',
     icon: (
