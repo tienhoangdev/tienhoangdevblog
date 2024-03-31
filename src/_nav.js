@@ -185,6 +185,11 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Kế hoạch tài chính',
+        to: '/finance/freedom',
+      },
+      {
+        component: CNavItem,
         name: 'Tính CAGR',
         to: '/finance/cagr-calculator',
       },
