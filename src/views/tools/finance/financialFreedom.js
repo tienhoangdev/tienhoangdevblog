@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import CustomTable from 'src/components/PaginationTable'
 import {
   CCard,
   CCardHeader,
@@ -25,15 +26,12 @@ import { Line } from 'react-chartjs-2'
 import { Chart as ChartJS } from 'chart.js/auto'
 
 const ResultLineChart = ({ dataSet }) => {
-  console.log('dataSet', dataSet)
   const data = {
     labels: [...dataSet.map((item) => item.age)],
     datasets: [
       {
         label: 'Tài sản',
-        data: [...dataSet.map((item) => item.futureValue)],
-        // backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        // borderColor: 'rgba(54, 162, 235, 1)',
+        data: [...dataSet.map((item) => Math.floor(item.futureValue))],
         fill: false,
         borderWidth: 1,
         cubicInterpolationMode: 'monotone',
@@ -41,9 +39,7 @@ const ResultLineChart = ({ dataSet }) => {
       },
       {
         label: 'Vốn',
-        data: [...dataSet.map((item) => item.capitalValue)],
-        // backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        // borderColor: 'rgba(54, 162, 235, 1)',
+        data: [...dataSet.map((item) => Math.floor(item.capitalValue))],
         fill: false,
         borderWidth: 1,
         cubicInterpolationMode: 'monotone',
@@ -122,11 +118,9 @@ const FinancialFreedom = () => {
         .required('Nhập số năm đầu tư'),
     }),
     onSubmit: (values) => {
-      console.log('Values submitted', values)
       const result = calculateCompoundInterest(values)
       setDataSet(result)
       if (!isResultChartShow) setIsResultChartShow(true)
-      console.log('Results', result)
     },
   })
   return (
@@ -164,7 +158,7 @@ const FinancialFreedom = () => {
                       />
                       <CFormFeedback invalid>{formik.errors.monthlyInvestment}</CFormFeedback>
                     </CCol>
-                    <CCol xs={4}>
+                    <CCol md={4} sm={6}>
                       <CFormInput
                         type="number"
                         id="startingAge"
@@ -176,7 +170,7 @@ const FinancialFreedom = () => {
                       <CFormFeedback invalid>{formik.errors.startingAge}</CFormFeedback>
                     </CCol>
 
-                    <CCol xs={4}>
+                    <CCol md={4} sm={6}>
                       <CFormInput
                         type="number"
                         id="investmentYears"
@@ -190,7 +184,7 @@ const FinancialFreedom = () => {
                       <CFormFeedback invalid>{formik.errors.investmentYears}</CFormFeedback>
                     </CCol>
 
-                    <CCol xs={4}>
+                    <CCol md={4} sm={12}>
                       <CFormInput
                         type="number"
                         id="interestRate"
@@ -201,7 +195,7 @@ const FinancialFreedom = () => {
                       />
                       <CFormFeedback invalid>{formik.errors.interestRate}</CFormFeedback>
                     </CCol>
-                    <CCol xs={2}>
+                    <CCol md={4} xm={12}>
                       <CFormInput
                         type="text"
                         id="unit"
@@ -228,6 +222,25 @@ const FinancialFreedom = () => {
               </CCallout>
             )}
             {isResultChartShow && <ResultLineChart dataSet={dataSet} />}
+            {isResultChartShow && (
+              <CustomTable
+                data={dataSet.map((row) => ({
+                  ...row,
+                  displayCapitalValue: Math.floor(row.capitalValue).toLocaleString(),
+                  displayFutureValue: Math.floor(row.futureValue).toLocaleString(),
+                  displayInterestValue: Math.floor(
+                    row.futureValue - row.capitalValue,
+                  ).toLocaleString(),
+                }))}
+                columns={[
+                  { name: 'Năm', selector: (row) => row.year },
+                  { name: 'Tuổi', selector: (row) => row.age },
+                  { name: 'Số vốn đầu tư', selector: (row) => row.displayCapitalValue },
+                  { name: 'Tài sản', selector: (row) => row.displayFutureValue },
+                  { name: 'Lãi', selector: (row) => row.displayInterestValue },
+                ]}
+              />
+            )}
           </div>
         </CCardBody>
       </CCard>

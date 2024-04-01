@@ -31,11 +31,7 @@ const AppHeader = () => {
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
-          <img
-            src="https://ahstigerlife.com/wp-content/uploads/2022/08/giga-chad.jpg"
-            height={48}
-          />{' '}
-          Tienhoangdev.com
+          <img src="/tienhoangdevlogo-ai.png" height={48} /> Tienhoangdev.com
         </CHeaderBrand>
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
