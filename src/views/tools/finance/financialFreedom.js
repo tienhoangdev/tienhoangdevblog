@@ -30,7 +30,7 @@ const ResultLineChart = ({ dataSet }) => {
     labels: [...dataSet.map((item) => item.age)],
     datasets: [
       {
-        label: 'Tài sản',
+        label: 'Tài sản (VND)',
         data: [...dataSet.map((item) => Math.floor(item.futureValue))],
         fill: false,
         borderWidth: 1,
@@ -38,7 +38,7 @@ const ResultLineChart = ({ dataSet }) => {
         tension: 0.4,
       },
       {
-        label: 'Vốn',
+        label: 'Vốn (VND)',
         data: [...dataSet.map((item) => Math.floor(item.capitalValue))],
         fill: false,
         borderWidth: 1,
