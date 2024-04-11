@@ -129,7 +129,7 @@ const FinancialFreedom = () => {
         <CCardHeader>Kế hoạch tài chính</CCardHeader>
         <CCardBody>
           <div className="container">
-            <CAccordion activeItemKey={2}>
+            <CAccordion activeItemKey={1}>
               <CAccordionItem itemKey={1}>
                 <CAccordionHeader>Nhập kế hoạch tài chính của bạn tại đây</CAccordionHeader>
                 <CAccordionBody>
