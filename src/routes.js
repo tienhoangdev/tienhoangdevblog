@@ -50,6 +50,9 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
+// Articles
+const Articles = React.lazy(() => import('./views/articles/Articles'))
+
 // Golang
 const GolangIntro = React.lazy(() => import('./views/golang/golangIntro'))
 
@@ -70,10 +73,15 @@ const GitRebaseWorkflow = React.lazy(() => import('./views/git/gitRebaseWorkflow
 // Postgresql
 const ubuntuPgInstallation = React.lazy(() => import('./views/postgresql/ubuntuPgInstallation'))
 const ACID = React.lazy(() => import('./views/postgresql/acid'))
+const PostgresFunction = React.lazy(() => import('./views/postgresql/postgresFunctions'))
 // Tools
 const CARGCalculator = React.lazy(() => import('./views/tools/finance/cagr'))
 const FinancialFreedom = React.lazy(() => import('./views/tools/finance/financialFreedom'))
+const MultiChoiceAnswerSheet = React.lazy(() =>
+  import('./views/tools/linhtinh/multiChoiceAnswerSheet'),
+)
 const AgeCalculator = React.lazy(() => import('./views/tools/memes/ageCalculator'))
+const ArticlePage = React.lazy(() => import('./views/articles/articlePage'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
@@ -131,6 +139,11 @@ const routes = [
     element: ACID,
   },
   {
+    path: '/postgresql/functions',
+    name: 'Postgres Functions',
+    element: PostgresFunction,
+  },
+  {
     path: '/git/git-rebase-workflow',
     name: 'Git workflow với rebase',
     element: GitRebaseWorkflow,
@@ -171,6 +184,11 @@ const routes = [
     element: FinancialFreedom,
   },
   {
+    path: '/linhtinh/multi-choice-answer-sheet',
+    name: 'Kế hoạch tài chính',
+    element: MultiChoiceAnswerSheet,
+  },
+  {
     path: '/memes/age-calculator',
     name: 'Age calculator',
     element: AgeCalculator,
@@ -179,6 +197,16 @@ const routes = [
     path: '/javascript/nodejs-eventloop',
     name: 'Node.js event loop',
     element: NodeJsEventLoop,
+  },
+  {
+    path: '/articles',
+    name: 'Articles',
+    element: Articles,
+  },
+  {
+    path: '/articles/:articleId',
+    name: 'Bài viết',
+    element: ArticlePage,
   },
 ]
 

@@ -20,7 +20,7 @@ const CAGRCalculator = () => {
     let cargResult = ((Math.pow(endingValue / beginingValue, 1 / numberOfYears) - 1) * 100).toFixed(
       2,
     )
-    cargResult = isNaN(cargResult) || cargResult == Infinity ? '-' : cargResult
+    cargResult = isNaN(cargResult) || cargResult === Infinity ? '-' : cargResult
     setCagr(cargResult)
   }, [beginingValue, endingValue, numberOfYears])
 

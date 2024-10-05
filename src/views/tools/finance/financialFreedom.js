@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import CustomTable from 'src/components/PaginationTable'
 import {
@@ -6,9 +6,7 @@ import {
   CCardHeader,
   CCardBody,
   CForm,
-  CFormLabel,
   CFormInput,
-  CFormText,
   CFormFeedback,
   CCallout,
   CAccordion,
@@ -16,14 +14,11 @@ import {
   CAccordionHeader,
   CAccordionBody,
   CCol,
-  CFormSelect,
-  CFormCheck,
   CButton,
 } from '@coreui/react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Line } from 'react-chartjs-2'
-import { Chart as ChartJS } from 'chart.js/auto'
 
 const ResultLineChart = ({ dataSet }) => {
   const data = {
@@ -81,15 +76,10 @@ function calculateCompoundInterest({
   return result
 }
 
-const InvestingResultTable = () => {
-  return <>Table</>
-}
-
 const FinancialFreedom = () => {
   const [dataSet, setDataSet] = useState([])
   const [isResultChartShow, setIsResultChartShow] = useState(false)
 
-  useEffect(() => {}, [])
   const formik = useFormik({
     initialValues: {
       currentAmount: 10000000,
