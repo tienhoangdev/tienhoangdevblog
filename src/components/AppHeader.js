@@ -13,20 +13,16 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilMenu } from '@coreui/icons'
-
 import { AppBreadcrumb } from './index'
+import { toogleSideBar } from 'src/features/app/appSlice'
 
 const AppHeader = () => {
   const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer fluid>
-        <CHeaderToggler
-          className="ps-1"
-          onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
-        >
+        <CHeaderToggler className="ps-1" onClick={() => dispatch(toogleSideBar())}>
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">

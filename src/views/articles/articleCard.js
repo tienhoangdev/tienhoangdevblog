@@ -35,9 +35,14 @@ const ArticleCard = ({ article, keywordStats }) => {
             {title}
           </CCardTitle>
           <CCardText>{description}</CCardText>
-          {keywords.map((keyword) => (
+          {keywords.map((keyword, index) => (
             <>
-              <CButton color="light" className="position-relative m-1" shape="rounded-pill">
+              <CButton
+                color="light"
+                className="position-relative m-1"
+                shape="rounded-pill"
+                key={index}
+              >
                 {keyword}
                 <CBadge color="danger" shape="rounded-pill" className="m-1">
                   {keywordStats?.[keyword] || 1} <span className="visually-hidden">bài viết</span>

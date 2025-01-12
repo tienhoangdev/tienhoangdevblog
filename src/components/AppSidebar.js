@@ -5,14 +5,14 @@ import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/r
 import { AppSidebarNav } from './AppSidebarNav'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
-
+import { toogleSidebarUnfoldable } from 'src/features/app/appSlice'
 // sidebar nav config
 import navigation from '../_nav'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const unfoldable = useSelector((state) => state.app.sidebarUnfoldable)
+  const sidebarShow = useSelector((state) => state.app.sidebarShow)
 
   return (
     <CSidebar
@@ -24,14 +24,14 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        {/*   <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
-        {/*   <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
+        {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
+        {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
         <img
           style={{ width: '50px', marginRight: '1rem' }}
           src="/tienhoangdevlogo-ai.png"
           alt="tienhoangdev icon"
         />
-        tienhoangdev.com
+        <span hidden={unfoldable ? true : false}>tienhoangdev.com</span>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
@@ -40,7 +40,7 @@ const AppSidebar = () => {
       </CSidebarNav>
       <CSidebarToggler
         className="d-none d-lg-flex"
-        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+        onClick={() => dispatch(toogleSidebarUnfoldable())}
       />
     </CSidebar>
   )

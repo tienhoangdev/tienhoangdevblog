@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {
-  CModalTitle,
   CCard,
   CCardBody,
   CCardTitle,
@@ -26,7 +25,6 @@ const ArticlePage = () => {
   const [articleInfo, setArticleInfo] = useState(null)
   const [articleMarkdownContent, setArticleMarkDownContent] = useState('')
   const [publishedDateDiff, setPublishedDateDiff] = useState(0)
-  // const [articleThumbnailUrl, setArticleThumbnailUrl] = useState('')
   const [readTimeEstimation, setReadTimeEstimation] = useState({
     words: 0,
     text: 'less than a minute read',

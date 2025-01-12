@@ -1,17 +1,25 @@
-import { createStore } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
+import appSlice from './features/app/appSlice'
+import articleSlice from './features/articles/articleSlice'
+import authSlice from './features/auth/authSlice'
 
-const initialState = {
-  sidebarShow: true,
-}
+const store = configureStore({
+  reducer: {
+    auth: authSlice,
+    app: appSlice,
+    articles: articleSlice,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore these action types
+        // ignoredActions: ['your/action/type'],
+        // Ignore these field paths in all actions
+        ignoredActionPaths: ['payload'],
+        // Ignore these paths in the state
+        // ignoredPaths: ['items.dates'],
+      },
+    }),
+})
 
-const changeState = (state = initialState, { type, ...rest }) => {
-  switch (type) {
-    case 'set':
-      return { ...state, ...rest }
-    default:
-      return state
-  }
-}
-
-const store = createStore(changeState)
 export default store

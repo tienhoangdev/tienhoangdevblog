@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { Service } from '../config'
 
-export const getArticleList = async ({ page = 1, pageSize = 10 }) => {
+export const getArticleList = async ({ page = 1, pageSize = 10, keywords, sortby, sorttype }) => {
   return axios.get(`${Service.CMS_API_HOST}/articles`, {
-    params: { page, pageSize },
+    params: { page, pageSize, keywords, sortby, sorttype },
   })
 }
 
