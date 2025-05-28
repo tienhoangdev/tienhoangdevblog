@@ -1,33 +1,54 @@
-name: Deploy personal wiki.tienhoangdev.com
-run-name: Deploy personal wiki.tienhoangdev.com
+name: Build React App and Push to AWS ECR
+
 on:
   push:
     branches:
-      - main
+      - main # Or your default branch, e.g., master
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 env:
-  SSH_PROD_SERVER_PORT: ${{secrets.SSH_PROD_SERVER_PORT}}
-  PROD_SERVER_IP: ${{secrets.PROD_SERVER_IP}}
+  AWS_REGION: "ap-southeast-1"
+  ECR_REPOSITORY: "tienhoangdevblog"
+
 jobs:
-  build:
-    runs-on: self-hosted
+  build_and_push_to_ecr:
+    name: Build and Push to ECR
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
 
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 16
-      #     cache: 'npm'
-      - name: Copy envs
-        run: eval "echo \"$(cat .env)\"" > .env
-      - name: Install project dependencies
-        run: npm ci
-      - name: Build the static file from React, deploy to production VPS
-        run: ./deploy_blog.sh
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
+      - name: Configure AWS Credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{secrets.GH_ACTION_ROLE_ARN}}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set Image Tag
+        id: image-tag
+        run: echo "IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+        # This uses the first 7 characters of the commit SHA as the image tag.
+        # You can also use 'latest' or another tagging strategy.
+        # For example, to use 'latest':
+        # run: echo "IMAGE_TAG=latest" >> $GITHUB_ENV
+
+      - name: Build, Tag, and Push Docker Image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Logout of Amazon ECR
+        if: always() # Ensures logout happens even if previous steps fail
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}
